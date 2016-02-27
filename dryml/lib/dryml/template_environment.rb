@@ -419,7 +419,7 @@ module Dryml
       attributes.delete(:field)
 
       # declared attributes don't appear in the attributes hash
-      stripped_attributes = HashWithIndifferentAccess.new.update(attributes)
+      stripped_attributes = attributes.clone
       locals.each {|a| stripped_attributes.delete(a.to_sym) }
 
       # Return locals declared as local variables (attrs="...")
