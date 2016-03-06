@@ -12,6 +12,7 @@ module Dryml
 
     ActiveSupport.on_load(:action_view) do
       ActionView::Template.register_template_handler("dryml", Dryml::Railtie::TemplateHandler)
+      ActionView::Template.register_template_handler("dryhaml", Dryml::Railtie::HamlTemplateHandler)
     end
 
     initializer 'dryml' do |app|

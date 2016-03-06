@@ -98,7 +98,14 @@ module Dryml
       if (!renderer_class ||                                          # nothing cached?
           (local_names - renderer_class.compiled_local_names).any? || # any new local names?
           renderer_class.load_time < mtime)                           # cache out of date?
-        renderer_class = make_renderer_class(File.read(identifier), identifier,
+        content = File.read(identifier)
+        # Convert dryhaml files to standard dryml
+        if identifier.last(7) == 'dryhaml'
+          content = Haml::Engine.new(content, format: :xhtml).render
+          Kernel.puts "Haml Experimental Support"
+          Kernel.puts content
+        end
+        renderer_class = make_renderer_class(content, identifier,
                                              local_names, taglibs_for(controller_path),
                                              imports_for_view(view))
         renderer_class.load_time = mtime
