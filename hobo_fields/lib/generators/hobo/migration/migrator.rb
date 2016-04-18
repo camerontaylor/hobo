@@ -2,7 +2,7 @@ module Generators
   module Hobo
     module Migration
 
-      class HabtmModelShim < Struct.new(:join_table, :foreign_keys, :connection)
+      class HabtmModelShim < Struct.new(:join_table, :foreign_keys, :fk_constraint_specs, :connection)
 
         def self.from_reflection(refl)
           result = self.new
@@ -11,6 +11,22 @@ module Generators
           # this may fail in weird ways if HABTM is running across two DB connections (assuming that's even supported)
           # figure that anybody who sets THAT up can deal with their own migrations...
           result.connection = refl.active_record.connection
+
+          result.fk_constraint_specs = [
+            HoboFields::Model::ForeignKeyConstraintSpec.new(
+              result,
+              refl.active_record.table_name,
+              from_table: result.join_table,
+              column: refl.foreign_key
+            ),
+            HoboFields::Model::ForeignKeyConstraintSpec.new(
+              result,
+              refl.table_name,
+              from_table: result.join_table,
+              column: refl.association_foreign_key
+            )
+          ]
+
           result
         end
 
@@ -37,10 +53,6 @@ module Generators
         end
 
         def index_specs
-          []
-        end
-
-        def foreign_key_specs
           []
         end
       end
