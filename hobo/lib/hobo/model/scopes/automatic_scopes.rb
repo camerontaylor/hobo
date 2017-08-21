@@ -5,6 +5,7 @@ module Hobo
       module AutomaticScopes
 
         def create_automatic_scope(name, check_only=false)
+          # check_only = true
           ScopeBuilder.new(self, name).create_scope(check_only)
         rescue ActiveRecord::StatementInvalid => e
           # Problem with the database? Don't try to create automatic
