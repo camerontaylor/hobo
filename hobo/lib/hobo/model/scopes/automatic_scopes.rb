@@ -140,7 +140,7 @@ module Hobo
           when name =~ /^(.*)_is$/ && (col = column($1))
             return true if check_only
 
-            scope_where "#{column_sql(col)} = ?"
+            scope_where = "#{column_sql(col)} = ?"
             def_scope do |str|
               klass.where scope_where, str
             end
