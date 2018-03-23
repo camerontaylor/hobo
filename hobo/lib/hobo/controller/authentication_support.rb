@@ -89,6 +89,7 @@ module Hobo
       def create_auth_cookie
         cookies[:auth_token] = { :value => "#{current_user.remember_token} #{current_user.class.name}",
                                  :expires => current_user.remember_token_expires_at }
+        cookies[:login] = current_user.email_address
       end
 
       private
