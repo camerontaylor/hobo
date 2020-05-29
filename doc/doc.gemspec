@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors = ['Bryan Larsen']
   s.email = 'bryan@larsen.st'
   s.homepage = 'http://hobocentral.net'
-  s.rubyforge_project = 'hobo'
+#  s.rubyforge_project = 'hobo'
   s.summary = 'The Hobo manual'
   s.description = 'The Hobo manual'
 

@@ -7,11 +7,11 @@ Gem::Specification.new do |s|
   s.authors = ['Tom Locke']
   s.email = 'tom@tomlocke.com'
   s.homepage = 'http://hobocentral.net'
-  s.rubyforge_project = 'hobo'
+#   s.rubyforge_project = 'hobo'
   s.summary = 'Core Ruby extensions from the Hobo project'
   s.description = 'Core Ruby extensions from the Hobo project'
 
-  s.add_runtime_dependency('rails', ["~> 5"])
+  s.add_runtime_dependency('rails', ["~> 6"])
   # s.add_development_dependency('rubydoctest', [">= 0"])
 
   s.files = `git ls-files -x #{name}/* -z`.split("\0")

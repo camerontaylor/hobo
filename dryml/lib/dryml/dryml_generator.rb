@@ -3,7 +3,6 @@ require 'set'
 require 'fileutils'
 
   module Dryml
-
     class DrymlGenerator
 
       HEADER = "<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->\n\n"
@@ -25,7 +24,6 @@ require 'fileutils'
         @generator.run
       end
 
-
       def initialize(generator_directories=nil)
         @templates = {}
         @digests   = {}
@@ -34,7 +32,6 @@ require 'fileutils'
       end
 
       attr_accessor :subsite
-
 
       def load_templates(generator_directories)
         generator_directories.each do |path|
@@ -51,7 +48,6 @@ require 'fileutils'
         end
       end
 
-
       def run
         # FIXME
         # Ensure all view hints loaded before running
@@ -63,7 +59,6 @@ require 'fileutils'
 
         subsites.each { |s| run_for_subsite(s) }
       end
-
 
       def run_for_subsite(subsite)
         self.subsite = subsite
@@ -98,21 +93,17 @@ require 'fileutils'
         end
       end
 
-
       def digest(s)
         OpenSSL::Digest::SHA1.hexdigest(s)
       end
-
 
       # --- Helper methods for the templates --- #
 
       attr_reader :controller
 
-
       def controllers
         Hobo::Controller::Model.all_controllers(subsite).sort_by &:name
       end
-
 
       def models
         Hobo::Model.all_models.sort_by &:name
@@ -126,7 +117,6 @@ require 'fileutils'
         @controller = nil
       end
 
-
       def each_model
         models.each do |model|
           @model = model
@@ -134,7 +124,6 @@ require 'fileutils'
         end
         @model = nil
       end
-
 
       def model
         @model || @controller.model
@@ -156,23 +145,19 @@ require 'fileutils'
         s.gsub(/[\\]/, "\\\\\\\\").gsub(/'/, "\\\\'")
       end
 
-
       def model_class
         model.name.underscore.gsub('_', '-').gsub('/', '--')
       end
 
-
       def view_hints
         model.view_hints
       end
-
 
       def through_collection_names(klass=model)
         klass.reflections.values.select do |refl|
           refl.macro == :has_many && refl.options[:through]
         end.map {|x| x.options[:through]}
       end
-
 
       def sortable_collection?(collection, model=self.model)
         # There's no perfect way to detect for this, given that acts_as_list
@@ -187,7 +172,6 @@ require 'fileutils'
             klass.new.position_column == refl.options[:order].to_s
         end
       end
-
 
       def standard_fields(*args)
         klass = args.first.is_a?(Class) ? args.shift : model
@@ -208,7 +192,6 @@ require 'fileutils'
         fields
       end
 
-
       def creators
         defined?(model::Lifecycle) ? model::Lifecycle.publishable_creators : []
       end
@@ -225,12 +208,9 @@ require 'fileutils'
         transitions.map { |t| t.name.to_s }.uniq
       end
 
-
       def a_or_an(word)
         (word =~ /^[aeiou]/i ? "an " : "a ") + word
       end
-
     end
-
   end
 

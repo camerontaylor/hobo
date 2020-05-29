@@ -157,7 +157,7 @@ module Hobo
         belongs_to_without_test_methods(name, *args, &block)
         refl = reflections[name.to_s]
         id_method = refl.options[:primary_key]
-        id_method = refl.klass.primary_key if id_method.blank?
+        id_method = refl.klass.primary_key if id_method.blank? rescue nil
         id_method = :id if id_method.blank?
         if options[:polymorphic]
           # TODO: the class lookup in _is? below is incomplete; a polymorphic association to an STI base class

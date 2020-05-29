@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.authors = ['Tom Locke']
   s.email = 'tom@tomlocke.com'
   s.homepage = 'http://hobocentral.net'
-  s.rubyforge_project = 'hobo'
+#   s.rubyforge_project = 'hobo'
   s.summary = 'Rich field types and migration generator for Rails'
   s.description = 'Rich field types and migration generator for Rails'
 

@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.authors = ['Tom Locke, James Garlick, Domizio Demichelis']
   s.email = 'tom@tomlocke.com'
   s.homepage = 'http://hobocentral.net'
-  s.rubyforge_project = 'hobo'
+#   s.rubyforge_project = 'hobo'
   s.summary = 'The clean sidemenu theme for Hobo'
   s.description = 'The clean sidemenu theme for Hobo'
 

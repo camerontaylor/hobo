@@ -4,6 +4,10 @@ module Dryml::Parser
 
     NEW_REX = defined?(REXML::VERSION) && REXML::VERSION =~ /3\.1\.(\d)(?:\.(\d))?/ && $1.to_i*1000 + $2.to_i >= 7002
 
+    unless defined?(NAME_STR)
+      NAME_STR = QNAME_STR
+    end
+
     DRYML_NAME_STR          = "#{NCNAME_STR}(?::(?:#{NCNAME_STR})?)?"
     DRYML_ATTRIBUTE_PATTERN = if NEW_REX
                                 /\s*(#{NAME_STR})(?:\s*=\s*(["'])(.*?)\4)?/um

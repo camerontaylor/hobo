@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.authors = ['Tom Locke, Bryan Larsen']
   s.email = 'tom@tomlocke.com'
   s.homepage = 'http://hobocentral.net'
-  s.rubyforge_project = 'hobo'
+#   s.rubyforge_project = 'hobo'
   s.summary = 'The RAPID tag library for Hobo'
   s.description = 'The RAPID tag library for Hobo'
 
